@@ -9,7 +9,7 @@ require 'rack/test'
 require './init.rb'
 
 def app
-  ShareConfigurationsApp
+  TotodileApp
 end
 
 API_URL = app.config['API_URL'].freeze

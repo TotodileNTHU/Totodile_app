@@ -3,7 +3,7 @@
 require 'sinatra'
 
 # Account related routes
-class ShareConfigurationsApp < Sinatra::Base
+class TotodileApp < Sinatra::Base
   get '/account/login/?' do
     slim :login
   end

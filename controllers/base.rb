@@ -5,8 +5,8 @@ require 'sinatra'
 require 'rack-flash'
 require 'rack/ssl-enforcer'
 
-# Base class for ConfigShare Web Application
-class ShareConfigurationsApp < Sinatra::Base
+# Base class for Totodile Web Application
+class TotodileApp < Sinatra::Base
   extend Econfig::Shortcut
 
   ONE_MONTH = 2_592_000 # One month in seconds
