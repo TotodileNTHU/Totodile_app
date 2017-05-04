@@ -6,4 +6,4 @@ test:
   API_URL: 'http://localhost:3000/api/v1'
 
 production:
-  API_URL: 'https://configshare-api.herokuapp.com/api/v1'
+  API_URL: 'https://tototileboard.herokuapp.com/api/v1'
