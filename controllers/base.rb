@@ -2,6 +2,7 @@
 
 require 'econfig'
 require 'sinatra'
+require 'json'
 require 'rack-flash'
 require 'rack/ssl-enforcer'
 

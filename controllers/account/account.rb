@@ -10,8 +10,8 @@ class TotodileApp < Sinatra::Base
 
   post '/account/login/?' do
     puts "CREDENTIALS: #{params[:username]} - #{params[:password]}"
-    @current_account = FindAuthenticatedAccount.new(settings.config).call(
-      username: params[:username], password: params[:password]
+    @current_account = FindAuthenticatedAccount.call(
+      {username: params[:username], password: params[:password]}.to_json
     )
 
     if @current_account
