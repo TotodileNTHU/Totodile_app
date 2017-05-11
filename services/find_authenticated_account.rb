@@ -17,6 +17,17 @@
 
 require 'http'
 
+#########################################
+# How to test it:
+# $ tux
+#
+# >> data = {username: 'fb_uid_1', password: '1234'}
+# => {:username=>"fb_uid_1", :password=>"1234"}
+# >> FindAuthenticatedAccount.call(data)
+# {"type":"account","uid":"fb_uid_1","email":"cory@gmail.com","name":"cory"}
+#
+#########################################
+
 class FindAuthenticatedAccount
   extend Dry::Monads::Either::Mixin
   extend Dry::Container::Mixin
