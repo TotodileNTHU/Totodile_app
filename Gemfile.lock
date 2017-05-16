@@ -65,10 +65,17 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
+    mail (2.6.5)
+      mime-types (>= 1.16, < 4)
+    mime-types (3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0521)
     minitest (5.10.1)
     minitest-rg (5.2.0)
       minitest (~> 5.0)
     multi_json (1.12.1)
+    pony (1.11)
+      mail (>= 2.0)
     public_suffix (2.0.5)
     puma (3.8.2)
     rack (1.6.5)
@@ -83,6 +90,10 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    rbnacl (4.0.2)
+      ffi
+    rbnacl-libsodium (1.0.11)
+      rbnacl (>= 3.0.1)
     representable (3.0.4)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
@@ -139,10 +150,12 @@ DEPENDENCIES
   minitest
   minitest-rg
   multi_json
+  pony
   puma
   rack-flash3
   rack-ssl-enforcer
   rake
+  rbnacl-libsodium
   rerun
   roar
   sinatra

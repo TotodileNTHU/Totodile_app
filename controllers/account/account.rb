@@ -16,7 +16,8 @@ class TotodileApp < Sinatra::Base
     if result.success?
       @current_account = result.value
       session[:current_account] = @current_account
-      flash[:error] = "Welcome back #{@current_account['uid']}"
+      puts "SESSION: #{session[:current_account]}"
+      flash[:notice] = "Welcome back #{@current_account['uid']}"
       slim :home
     else
       flash[:error] = 'Your username or password did not match our records'
