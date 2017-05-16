@@ -9,14 +9,14 @@ class TotodileApp < Sinatra::Base
   end
 
   post '/account/login/?' do
-    puts "CREDENTIALS: #{params[:username]} - #{params[:password]}"
-    @current_account = FindAuthenticatedAccount.call(
+    result = FindAuthenticatedAccount.call(
       {username: params[:username], password: params[:password]}.to_json
     )
 
-    if @current_account
+    if result.success?
+      @current_account = result.value
       session[:current_account] = @current_account
-      flash[:error] = "Welcome back #{@current_account['username']}"
+      flash[:error] = "Welcome back #{@current_account['uid']}"
       slim :home
     else
       flash[:error] = 'Your username or password did not match our records'

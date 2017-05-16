@@ -40,7 +40,8 @@ class FindAuthenticatedAccount
 
   register :validate_input, lambda { |input|
     begin
-      data = {uid: input[:username], password: input[:password]}
+      input = JSON.parse input
+      data = {uid: input['username'], password: input['password']}
       Right(data)
     rescue
       Left(Error.new('Wrong input account data'))
@@ -51,7 +52,7 @@ class FindAuthenticatedAccount
     response = HTTP.post("#{TotodileApp.config.API_URL}/accounts/authenticate", json: data)
     
     if response.status == 200
-      Right(response.body)
+      Right(JSON.parse response.body.readpartial)
     else
       Left(Error.new('Wrong username/password')) 
     end
