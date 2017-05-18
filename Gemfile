@@ -22,6 +22,8 @@ gem 'tux'
 # Communication
 gem 'http'
 gem 'pony'
+gem 'redis'
+gem 'redis-rack'
 
 gem 'roar'
 gem 'json'
