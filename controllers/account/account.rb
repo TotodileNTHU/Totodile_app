@@ -10,7 +10,7 @@ class TotodileApp < Sinatra::Base
 
   post '/account/login/?' do
     result = FindAuthenticatedAccount.call(
-      {username: params[:username], password: params[:password]}.to_json
+      {name: params[:name], password: params[:password]}.to_json
     )
 
     if result.success?
@@ -36,8 +36,8 @@ class TotodileApp < Sinatra::Base
     slim(:register)
   end
 
-  get '/account/:username/?' do
-    if @current_account && @current_account['username'] == params[:username]
+  get '/account/:name/?' do
+    if @current_account && @current_account['name'] == params[:name]
       slim(:account)
     else
       redirect '/account/login'

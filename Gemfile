@@ -3,7 +3,6 @@
 source 'https://rubygems.org'
 ruby '2.4.1'
 
-
 # Web
 gem 'econfig'
 gem 'puma'
@@ -15,21 +14,15 @@ gem 'slim'
 gem 'rack-ssl-enforcer'
 gem 'rbnacl-libsodium'
 
-# Diagnostic
-gem 'rake'
-gem 'tux'
-
 # Communication
 gem 'http'
 gem 'pony'
+gem 'redis'
+gem 'redis-rack'
 
-gem 'roar'
-gem 'json'
-gem 'multi_json'
-gem 'dry-monads'
-gem 'dry-validation'
-gem 'dry-container'
-gem 'dry-transaction'
+# Diagnostic
+gem 'rake'
+gem 'tux'
 
 group :test do
   gem 'minitest'

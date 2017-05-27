@@ -5,30 +5,32 @@ require 'webmock/minitest'
 
 describe 'Test Service Objects' do
   before do
+    @credentials = { name: 'soumya.ray', password: 'mypa$$w0rd' }
+    @mal_credentials = { name: 'soumya.ray', password: 'anyolepassword' }
+    @api_account = { account:
+                       { name: 'soumya.ray', email: 'sray@nthu.edu.tw' } }
+
     WebMock.stub_request(:post, "#{API_URL}/accounts/authenticate")
-           .with(body: HAPPY_CREDENTIAL.to_json)
-           .to_return(body: HAPPY_ACCOUNT1.to_json,
+           .with(body: @credentials.to_json)
+           .to_return(body: @api_account.to_json,
                       headers: { 'content-type' => 'application/json' })
 
     WebMock.stub_request(:post, "#{API_URL}/accounts/authenticate")
-           .with(body: SAD_CREDENTIAL.to_json)
+           .with(body: @mal_credentials.to_json)
            .to_return(status: 403)
   end
 
   describe 'Find authenticated account' do
     it 'HAPPY: should find an authenticated account' do
-      result = FindAuthenticatedAccount.call(HAPPY_CREDENTIAL1.to_json).value
-      
-      result.wont_be_nil
-      result['uid'].must_equal HAPPY_USERNAME1
-      result['email'].must_equal HAPPY_EMAIL1
-      
+      account = FindAuthenticatedAccount.new(app.config).call(@credentials)
+      _(account).wont_be_nil
+      _(account['name']).must_equal @api_account[:account][:name]
+      _(account['email']).must_equal @api_account[:account][:email]
     end
 
     it 'BAD: should not find a false authenticated account' do
-      result = FindAuthenticatedAccount.call(SAD_CREDENTIAL1.to_json)
-      
-      result.value.message.must_include "Wrong username/password"
+      account = FindAuthenticatedAccount.new(app.config).call(@mal_credentials)
+      _(account).must_be_nil
     end
   end
 end

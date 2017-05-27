@@ -2,8 +2,8 @@ a href='/'
   == 'HOME'
 = ' | '
 - if @current_account
-  = "#{@current_account['username']} | "
-  a href="/account/#{@current_account['username']}" account
+  = "#{@current_account['name']} | "
+  a href="/account/#{@current_account['name']}" account
   = ' | '
   a href='/account/logout' logout
 - else
