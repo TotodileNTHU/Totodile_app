@@ -9,16 +9,14 @@ class TotodileApp < Sinatra::Base
   end
 
   post '/account/login/?' do
-    result = FindAuthenticatedAccount.call(
-      {name: params[:name], password: params[:password]}.to_json
+    @current_account = FindAuthenticatedAccount.new(settings.config).call(
+      name: params[:name], password: params[:password]
     )
 
-    if result.success?
-      @current_account = result.value
-      session[:current_account] = @current_account
-      puts "SESSION: #{session[:current_account]}"
-      flash[:notice] = "Welcome back #{@current_account['uid']}"
-      slim :home
+    if @current_account
+      SecureSession.new(session).set(:current_account, @current_account)
+      flash[:notice] = "Welcome back #{@current_account['name']}"
+      redirect '/'
     else
       flash[:error] = 'Your username or password did not match our records'
       slim :login
@@ -27,7 +25,7 @@ class TotodileApp < Sinatra::Base
 
   get '/account/logout/?' do
     @current_account = nil
-    session[:current_account] = nil
+    SecureSession.new(session).delete(:current_account)
     flash[:notice] = 'You have logged out - please login again to use this site'
     slim :login
   end
