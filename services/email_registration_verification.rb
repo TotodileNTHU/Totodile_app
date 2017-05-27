@@ -13,7 +13,7 @@ class EmailRegistrationVerification
         address: 'smtp.sendgrid.net',
         port: '587',
         domain: @config.SENDGRID_DOMAIN,
-        name: @config.SENDGRID_NAME,
+        user_name: @config.SENDGRID_USERNAME,
         password: @config.SENDGRID_PASSWORD,
         authentication: :plain,
         enable_starttls_auto: true
@@ -34,7 +34,7 @@ class EmailRegistrationVerification
 
   def registration_email(token)
     verification_url = "#{@config.APP_URL}/account/register/#{token}/verify"
-
+    print "#{verification_url}\n"
     <<~END_EMAIL
       <H1>TotodileBoard Registration Received<H1>
       <p>Please <a href=\"#{verification_url}\">click here</a> to validate your
