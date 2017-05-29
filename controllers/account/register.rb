@@ -20,7 +20,7 @@ class TotodileApp < Sinatra::Base
     rescue => e
       print "FAIL EMAIL: #{e}"
       logger.error "FAIL EMAIL: #{e}"
-      flash[:error] = "#{e} Unable to send email verification -- please "\
+      flash[:error] = "Unable to send email verification -- please "\
                       "check you have entered the right email address"
       redirect '/account/register'
     end
@@ -49,8 +49,6 @@ class TotodileApp < Sinatra::Base
       flash[:notice] = 'Please login with your new username and password'
       redirect '/account/login'
     else
-      print "Your account could not be created. Please try again"
-      logger.error "logger: Your account could not be created. Please try again"
       flash[:error] = 'Your account could not be created. Please try again'
       redirect '/account/register'
     end
