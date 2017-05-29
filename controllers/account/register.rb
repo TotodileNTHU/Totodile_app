@@ -20,8 +20,8 @@ class TotodileApp < Sinatra::Base
     rescue => e
       print "FAIL EMAIL: #{e}"
       logger.error "FAIL EMAIL: #{e}"
-      flash[:error] = 'Unable to send email verification -- please '\
-                      'check you have entered the right email address'
+      flash[:error] = "#{e} Unable to send email verification -- please "\
+                      "check you have entered the right email address"
       redirect '/account/register'
     end
   end
