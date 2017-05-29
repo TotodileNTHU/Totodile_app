@@ -39,17 +39,27 @@ class TotodileApp < Sinatra::Base
       params[:password].empty?
 
     new_account = SecureMessage.decrypt(params[:token_secure])
-    result = CreateVerifiedAccount.new(settings.config).call(
-      name: new_account['name'],
-      email: new_account['email'],
-      password: params['password']
-    )
+  #  result = CreateVerifiedAccount.new(settings.config).call(
+  #    name: new_account['name'],
+  #    email: new_account['email'],
+  #    password: params['password']
+  #  )
+
+    #debug
+    response = HTTP.post("#{settings.config.API_URL}/accounts/",
+                         json: { name: new_account['name'],
+                                 email: new_account['email'],
+                                 password: params['password'] })
+    response.code == 201 ? true : false
+
+
 
     if result
       flash[:notice] = 'Please login with your new username and password'
       redirect '/account/login'
     else
-      flash[:error] = 'Your account could not be created. Please try again'
+      flash[:error] = "#{response} Your account could not be created. Please try again"
+    #  flash[:error] = 'Your account could not be created. Please try again'
       redirect '/account/register'
     end
   end
