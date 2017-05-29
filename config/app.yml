@@ -9,3 +9,4 @@ test:
 
 production:
   API_URL: https://tototileboard.herokuapp.com/api/v1
+  APP_URL: https://totodileapp.herokuapp.com

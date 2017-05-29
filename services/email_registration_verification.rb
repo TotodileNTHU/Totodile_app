@@ -37,7 +37,7 @@ class EmailRegistrationVerification
     print "#{verification_url}\n"
     <<~END_EMAIL
       <H1>TotodileBoard Registration Received<H1>
-      <p>Please <a href=\"#{verification_url}\">click here</a> to validate your
+      <p>Please click #{verification_url} to validate your
       email. You will be asked to set a password to activate your account.</p>
     END_EMAIL
   end
