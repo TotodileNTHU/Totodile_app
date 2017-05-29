@@ -34,7 +34,7 @@ class TotodileApp < Sinatra::Base
   end
 
   post '/account/register/:token_secure/verify' do
-    redirect "/register/#{params[:token_secure]}/verify" if
+    redirect "/account/register/#{params[:token_secure]}/verify" if
       (params[:password] != params[:password_confirm]) ||
       params[:password].empty?
 
