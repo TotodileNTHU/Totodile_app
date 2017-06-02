@@ -1,0 +1,17 @@
+div 
+  div 
+    h3 All postingects
+  div 
+    button + New Posting
+table
+  thead
+    tr
+      th Owner
+      th Content
+  tbody
+    - @postings.each do |posting|
+      tr
+        td #{posting[:owner_name]}
+        td #{posting[:content]}
+
+

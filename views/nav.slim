@@ -5,6 +5,8 @@ a href='/'
   = "#{@current_account['name']} | "
   a href="/account/#{@current_account['name']}" account
   = ' | '
+  a href="/account/#{@current_account['name']}/postings" postings 
+  = ' | '
   a href='/account/logout' logout
 - else
   a href='/account/login'

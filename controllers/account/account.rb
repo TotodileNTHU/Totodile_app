@@ -4,17 +4,25 @@ require 'sinatra'
 
 # Account related routes
 class TotodileApp < Sinatra::Base
+  def authenticate_login(auth)
+    @current_account = auth['account']
+    @auth_token = auth['auth_token']
+    current_session = SecureSession.new(session)
+    current_session.set(:current_account, @current_account)
+    current_session.set(:auth_token, @auth_token)
+  end
+  
   get '/account/login/?' do
     slim :login
   end
 
   post '/account/login/?' do
-    @current_account = FindAuthenticatedAccount.new(settings.config).call(
+    auth = FindAuthenticatedAccount.new(settings.config).call(
       name: params[:name], password: params[:password]
     )
 
-    if @current_account
-      SecureSession.new(session).set(:current_account, @current_account)
+    if auth
+      authenticate_login(auth)
       flash[:notice] = "Welcome back #{@current_account['name']}"
       redirect '/'
     else
