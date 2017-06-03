@@ -44,6 +44,10 @@ class TotodileApp < Sinatra::Base
   end
 
   get '/' do
+    @postings = GetAllPostings.new(settings.config)
+                                .call(current_account: @current_account,
+                                      auth_token: @auth_token)
+      
     slim :home
   end
 end

@@ -5,6 +5,10 @@ require './init.rb'
 
 task default: [:rubocop, :spec]
 
+task :run do
+ sh 'rerun "rackup -p 9292"'
+end
+
 desc 'Run all the tests'
 Rake::TestTask.new(:spec) do |t|
   t.pattern = 'specs/*_spec.rb'

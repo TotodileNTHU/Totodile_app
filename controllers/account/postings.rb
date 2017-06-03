@@ -7,7 +7,7 @@ class TotodileApp < Sinatra::Base
                                 .call(current_account: @current_account,
                                       auth_token: @auth_token)
     end
-    puts @postings
+    
     @postings ? slim(:postings_all) : redirect('/')
   end
 end
