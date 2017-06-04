@@ -3,7 +3,7 @@ require 'sinatra'
 class TotodileApp < Sinatra::Base
   get '/account/:name/postings/?' do
     if current_account?(params)
-      @postings = GetAllPostings.new(settings.config)
+      @postings = GetUserPostings.new(settings.config)
                                 .call(current_account: @current_account,
                                       auth_token: @auth_token)
     end

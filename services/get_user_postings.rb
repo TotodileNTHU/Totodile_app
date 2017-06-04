@@ -1,14 +1,14 @@
 require 'http'
 
-# Returns all postings
-class GetAllPostings
+# Returns all postings belonging to an account
+class GetUserPostings
   def initialize(config)
     @config = config
   end
 
   def call(current_account:, auth_token:)
     response = HTTP.auth("Bearer #{auth_token}")
-                   .get("#{@config.API_URL}/postings")
+                   .get("#{@config.API_URL}/account_postings/#{current_account['id']}")
     
     response.code == 200 ? extract_postings(response.parse) : nil
   end
