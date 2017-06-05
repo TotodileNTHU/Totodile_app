@@ -10,4 +10,14 @@ class TotodileApp < Sinatra::Base
     
     @postings ? slim(:postings_all) : redirect('/')
   end
+
+  post '/account/:name/posting/?' do
+  	if current_account?(params)
+  	  CreatePosting.new(settings.config).call(
+        current_account: @current_account, content: params[:content]
+      )
+
+      redirect '/account/' + @current_account['name'] + '/postings/'
+    end
+  end
 end

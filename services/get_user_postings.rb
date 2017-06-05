@@ -8,7 +8,7 @@ class GetUserPostings
 
   def call(current_account:, auth_token:)
     response = HTTP.auth("Bearer #{auth_token}")
-                   .get("#{@config.API_URL}/account_postings/#{current_account['id']}")
+                   .get("#{@config.API_URL}/accounts/#{current_account['id']}/postings")
     
     response.code == 200 ? extract_postings(response.parse) : nil
   end
