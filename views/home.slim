@@ -13,7 +13,7 @@ div class="row"
         - @postings.each do |posting|
           tr
             td #{posting[:owner_name]}
-            td #{posting[:content]}
+            td class="ellipsis" #{posting[:content]}
             td #{posting[:created_at]}
   - else
     p
