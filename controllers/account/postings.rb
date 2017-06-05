@@ -20,4 +20,15 @@ class TotodileApp < Sinatra::Base
       redirect '/account/' + @current_account['name'] + '/postings/'
     end
   end
+
+  get '/other_account/:name/postings/:account_id/?' do
+    if current_account?(params)
+      @postings = GetOtherPostings.new(settings.config)
+                                .call(current_account: @current_account,
+                                      auth_token: @auth_token,
+                                      other_account_id: params['account_id'])
+    end
+    
+    @postings ? slim(:postings_all) : redirect('/')
+  end
 end

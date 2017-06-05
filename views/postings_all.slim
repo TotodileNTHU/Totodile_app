@@ -8,12 +8,15 @@ div class="row"
       tr
         th Owner
         th Content
+        th Comments
         th Created At
     tbody
       - @postings.each do |posting|
         tr
           td #{posting[:owner_name]}
           td class="ellipsis" #{posting[:content]}
+          td 
+            a href='#' class="btn btn-success btn-xs" See comments
           td #{posting[:created_at]}
 
 div class="modal fade" id="newPostingModal" role="dialog"
