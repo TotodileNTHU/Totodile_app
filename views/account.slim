@@ -1,10 +1,9 @@
-h1 User Account
-table
-  tr
-    td Username:
-    td
-      == @current_account['name']
-  tr
-    td Email:
-    td
-      == @current_account['email']
+div class="row"
+  div 
+    h1 User Account
+div class="row"
+  div class="col-md-8"
+    p class="text-warning" Username: #{@current_account['name']}
+    p class="text-warning" Email: #{@current_account['email']}
+    p class="text-warning" Token: #{@auth_token}
+  
