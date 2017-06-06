@@ -1,10 +1,16 @@
-div class="page-header" id="banner"
-p
-  form method='post' action='/account/login' id='form-login'
-    label for='name' Username
-    input type='text' name='name' id='input-name'
-    br
-    label for='password' Password
-    input type='password' name='password' id='input-password'
-    br
-    input type='submit' id='button-login' value='login'
+div class="row"
+  form class="form-horizontal" method='post' action='/account/login' id='form-login'
+    fieldset
+      legend Login Totodile
+      div class="form-group"
+        label for='name' class="col-lg-2 control-label"Username
+        div class="col-lg-10"
+          input type='text' class="form-control" name='name' id='input-name'
+      div class="form-group"
+        label for='password' class="col-lg-2 control-label"Password
+        div class="col-lg-10"
+          input type='password' class="form-control" name='password' id='input-password'
+      div class="form-group"
+        div class="col-lg-10 col-lg-offset-2"
+          button type="reset" class="btn btn-default" style="margin-right: 5px"Cancel
+          button type="submit" class="btn btn-primary" Submit

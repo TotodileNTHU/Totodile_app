@@ -1,19 +1,19 @@
-div class="page-header" id="banner"
-h2 Set Your Password
-table
-  tr
-    td Username:
-    td
-      == @new_account['name']
-  tr
-    td Email:
-    td
-      == @new_account['email']
-form action="/account/register/#{@token_secure}/verify" method='post' id='user-form'
-  label for='password' Password:
-  input type='password' name='password' id='password_input'
-  br
-  label for='password' Re-enter Password:
-  input type='password' name='password_confirm' id='password_confirm_input'
-  br
-  input type='submit' id='registration-form-submit' class='submit' value='submit'
+div class="row" style="margin-bottom: 30px"
+  h3 class="text-warning" == @new_account['name']
+  h3 class="text-warning" == @new_account['email']
+div class="row"
+  form class="form-horizontal" action="/account/register/#{@token_secure}/verify" method='post' id='user-form'
+    fieldset
+      legend Set Your Password
+      div class="form-group"
+        label for='password' class="col-lg-2 control-label"Password
+        div class="col-lg-10"
+          input type='password' class="form-control" name='password' id='input-password'
+      div class="form-group"
+        label for='password' class="col-lg-2 control-label"Re-enter Password:
+        div class="col-lg-10"
+          input type='password' class="form-control" name='password_confirm' id='input-password_confirm'
+      div class="form-group"
+        div class="col-lg-10 col-lg-offset-2"
+          button type="reset" class="btn btn-default" style="margin-right: 5px" Cancel
+          button type="submit" class="btn btn-primary" Submit

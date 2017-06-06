@@ -1,10 +1,16 @@
-div class="page-header" id="banner"
-h2 Create An Account
-form action='/account/register' method='post' id='user-form'
-  label for='name' Username:
-  input type='text' name='name' id='name_input'
-  br
-  label for='email' Email:
-  input type='text' name='email' id='email_input'
-  br
-  input type='submit' id='registration-form-submit' class='submit' value='submit'
+div class="row"
+  form class="form-horizontal" action='/account/register' method='post' id='user-form'
+    fieldset
+      legend Create an Account
+      div class="form-group"
+        label for='name' class="col-lg-2 control-label"Username
+        div class="col-lg-10"
+          input type='text' class="form-control" name='name' id='input-name'
+      div class="form-group"
+        label for='email' class="col-lg-2 control-label"Email
+        div class="col-lg-10"
+          input type='text' class="form-control" name='email' id='input-email'
+      div class="form-group"
+        div class="col-lg-10 col-lg-offset-2"
+          button type="reset" class="btn btn-default" style="margin-right: 5px"Cancel
+          button type="submit" class="btn btn-primary" Submit
