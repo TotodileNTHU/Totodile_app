@@ -17,7 +17,7 @@ div class="row"
               a href="/other_account/#{posting[:owner_name]}/postings/#{posting[:owner_id]}/" #{posting[:owner_name]}
             td class="ellipsis" #{posting[:content]}
             td 
-              a href='#' class="btn btn-success btn-xs" See comments
+              a href='/postings/#{posting[:id]}/comments/' class="btn btn-success btn-xs" See comments
             td #{posting[:created_at]}
   - else
     p

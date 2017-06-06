@@ -17,7 +17,7 @@ class GetAllPostings
 
   def extract_postings(postings)
     postings['data'].map do |posting|
-      created_at = posting['attributes']['created_at'].split(' ')[0] + ' ' +posting['attributes']['created_at'].split(' ')[1]
+      created_at = posting['attributes']['created_at'].split(' ')[0] + ' ' + posting['attributes']['created_at'].split(' ')[1]
       { id: posting['id'],
         owner_id: posting['relationships']['owner']['id'],
         owner_name: posting['relationships']['owner']['name'],

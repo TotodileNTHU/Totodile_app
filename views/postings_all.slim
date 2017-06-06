@@ -16,7 +16,7 @@ div class="row"
           td #{posting[:owner_name]}
           td class="ellipsis" #{posting[:content]}
           td 
-            a href='#' class="btn btn-success btn-xs" See comments
+            a href='/postings/#{posting[:id]}/comments/' class="btn btn-success btn-xs" See comments
           td #{posting[:created_at]}
 
 div class="modal fade" id="newPostingModal" role="dialog"

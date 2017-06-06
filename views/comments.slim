@@ -1,0 +1,15 @@
+div class="row" style="margin-bottom: 10px"
+  h1 Comments for this posting
+div class="row" style="margin-bottom: 10px"
+  div class="col-md-8"
+    blockquote
+      h2 #{@posting_with_comments[:content]}
+      small #{@posting_with_comments[:owner_name]}, #{@posting_with_comments[:created_at]}
+  div class="col-md-4"
+    button type="button" class="btn btn-success" data-toggle="modal" data-target="#newCommentModal" + New Comment 
+div calss="row"
+  - @posting_with_comments[:comments].each do |comment|
+    div class="col-md-4"
+      blockquote
+        h4 #{comment[:content]}
+        small #{comment[:commenter_name]}, #{comment[:created_at]} 

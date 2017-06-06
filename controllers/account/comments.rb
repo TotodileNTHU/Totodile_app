@@ -4,13 +4,14 @@ class TotodileApp < Sinatra::Base
   get '/postings/:posting_id/comments/?' do
   	puts 'comment controller'
     if current_account?(params)
-      @commetns = GetAllComments.new(settings.config)
+      @posting_with_comments = GetAllComments.new(settings.config)
                                 .call(current_account: @current_account,
                                       auth_token: @auth_token,
                                       posting_id: params['posting_id'])
+      puts @posting_with_comments
     end
 
     
-    # @commetns ? slim(:postings_all) : redirect('/')
+    @posting_with_comments ? slim(:comments) : redirect('/')
   end
 end
