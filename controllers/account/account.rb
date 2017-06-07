@@ -28,9 +28,9 @@ class TotodileApp < Sinatra::Base
     if auth
       authenticate_login(auth)
       flash[:notice] = "Welcome back #{@current_account['name']}"
-      @postings = GetAllPostings.new(settings.config)
-                                .call(current_account: @current_account,
-                                      auth_token: @auth_token)
+      # @postings = GetAllPostings.new(settings.config)
+      #                           .call(current_account: @current_account,
+      #                                 auth_token: @auth_token)
       redirect '/'
     else
       flash[:error] = 'Your username or password did not match our records'
