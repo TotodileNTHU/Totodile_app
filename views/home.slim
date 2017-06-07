@@ -20,5 +20,20 @@ div class="row"
               a href='/postings/#{posting[:id]}/comments/' class="btn btn-success btn-xs" See comments
             td #{posting[:created_at]}
   - else
-    p
-      a href='/account/login' login to start!
+    h1 Not login yet
+    table class="table table-striped table-hover "
+      thead
+        tr
+          th Owner
+          th Content
+          th Comments
+          th Created At
+      tbody
+        - @postings_test.each do |posting|
+          tr
+            td 
+              a href="/other_account/#{posting[:owner_name]}/postings/#{posting[:owner_id]}/" #{posting[:owner_name]}
+            td class="ellipsis" #{posting[:content]}
+            td 
+              a href='/postings/#{posting[:id]}/comments/' class="btn btn-success btn-xs" See comments
+            td #{posting[:created_at]}
