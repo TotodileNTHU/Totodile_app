@@ -24,6 +24,9 @@ class FindAuthenticatedAccount
   end
 end
 
+# response = HTTP.post("https://tototileboard.herokuapp.com/api/v1/accounts/authenticate",
+#                          json: { name: 'leo', password: 'leopwd' })
+
 
 #class FindAuthenticatedAccount
 #  extend Dry::Monads::Either::Mixin

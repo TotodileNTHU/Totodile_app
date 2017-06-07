@@ -6,11 +6,9 @@ class GetAllComments
     @config = config
   end
 
-  def call(current_account:, auth_token:, posting_id:)
-    posting_info = HTTP.auth("Bearer #{auth_token}")
-                   .get("#{@config.API_URL}/postings/#{posting_id}")
-    response = HTTP.auth("Bearer #{auth_token}")
-                   .get("#{@config.API_URL}/postings/#{posting_id}/comments/")
+  def call(posting_id:)
+    posting_info = HTTP.get("#{@config.API_URL}/postings/#{posting_id}")
+    response = HTTP.get("#{@config.API_URL}/postings/#{posting_id}/comments/")
     response.code == 200 ? extract_comments(posting_info.parse, response.parse) : nil
   end
 

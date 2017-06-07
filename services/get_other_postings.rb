@@ -6,9 +6,8 @@ class GetOtherPostings
     @config = config
   end
 
-  def call(current_account:, auth_token:, other_account_id:)
-    response = HTTP.auth("Bearer #{auth_token}")
-                   .get("#{@config.API_URL}/accounts/#{other_account_id}/postings")
+  def call(other_account_id:)
+    response = HTTP.get("#{@config.API_URL}/accounts/#{other_account_id}/postings")
     
     response.code == 200 ? extract_postings(response.parse) : nil
   end

@@ -1,24 +1,26 @@
 div class="jumbotron row" style="margin-bottom: 10px"
   h1 #{@posting_with_comments[:owner_name]}'s posting
   p style="word-break:break-all" #{@posting_with_comments[:content]}
-  p 
-    button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newCommentModal" + New Comment 
+  - if @current_account
+    p 
+      button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newCommentModal" + New Comment 
 div calss="row"
   - @posting_with_comments[:comments].each do |comment|
     div class="jumbotron row" style="margin-bottom: 10px"
       p style="word-break:break-all" #{comment[:content]}
       small class="text-muted" #{comment[:commenter_name]} at  #{comment[:created_at]}
 
-div class="modal fade" id="newCommentModal" role="dialog"
-  div class="modal-dialog"
-    div class="modal-content"
-      div class="modal-header"
-        h4 class="modal-title" New Commit
-      div class="modal-body"
-        form class="form-horizontal" role="form" action="/account/#{@current_account['name']}/comment/#{@posting_with_comments[:id]}" method='post'
-          fieldset
-            div class="form-group"
-              label for="textArea" class="col-sm-2 control-label" style="margin-bottom: 5px" Content
-              textarea class="form-control" name="content" rows="3" id="textArea"
-            button type='submit' id='registration-form-submit' class='submit' value='submit' class="btn btn-primary" style="margin-right: 5px"Create
-            button type="button" class="btn btn-default" data-dismiss="modal" Cancel
+- if @current_account
+  div class="modal fade" id="newCommentModal" role="dialog"
+    div class="modal-dialog"
+      div class="modal-content"
+        div class="modal-header"
+          h4 class="modal-title" New Commit
+        div class="modal-body"
+          form class="form-horizontal" role="form" action="/account/#{@current_account['name']}/comment/#{@posting_with_comments[:id]}" method='post'
+            fieldset
+              div class="form-group"
+                label for="textArea" class="col-sm-2 control-label" style="margin-bottom: 5px" Content
+                textarea class="form-control" name="content" rows="3" id="textArea"
+              button type='submit' id='registration-form-submit' class='submit' value='submit' class="btn btn-primary" style="margin-right: 5px"Create
+              button type="button" class="btn btn-default" data-dismiss="modal" Cancel

@@ -7,7 +7,7 @@ class GetAllPostingsWithoutToken
   end
 
   def call()
-    response = HTTP.get("#{@config.API_URL}/postings_test")
+    response = HTTP.get("#{@config.API_URL}/postings_without_token")
     
     response.code == 200 ? extract_postings(response.parse) : nil
   end
