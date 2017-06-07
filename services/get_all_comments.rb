@@ -15,11 +15,11 @@ class GetAllComments
   private
 
   def extract_comments(posting, comments)
-    comment_list = comments['data'].map do |comment|
+    comment_list = comments['data'].map.with_index do |comment, index|
       created_at = comment['attributes']['created_at'].split(' ')[0] + ' ' + comment['attributes']['created_at'].split(' ')[1]
       { id: comment['id'],
         commenter_id: comment['attributes']['commenter_id'],
-        commenter_name: comment['attributes']['commenter_name'],
+        commenter_name: 'totodile' + comments['commenter_secret'][index].to_s,
         content: comment['attributes']['content'],
         created_at: created_at,
       }
