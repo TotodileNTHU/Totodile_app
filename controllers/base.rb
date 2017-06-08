@@ -16,9 +16,9 @@ class TotodileApp < Sinatra::Base
   set :views, File.expand_path('../../views', __FILE__)
   set :public_dir, File.expand_path('../../public', __FILE__)
 
-  # configure :production do
-  #   use Rack::SslEnforcer
-  # end
+  configure :production do
+    use Rack::SslEnforcer
+  end
 
   configure do
     Econfig.env = settings.environment.to_s
@@ -30,7 +30,7 @@ class TotodileApp < Sinatra::Base
 
   # use Rack::Session::Cookie, expire_after: ONE_MONTH, secret: SecureSession.secret
   # use Rack::Session::Pool, expire_after: ONE_MONTH
-  #use Rack::Session::Redis, expire_after: ONE_MONTH, redis_server: settings.config.REDIS_URL
+  use Rack::Session::Redis, expire_after: ONE_MONTH, redis_server: settings.config.REDIS_URL
 
   use Rack::Flash
 
