@@ -9,10 +9,13 @@ class CreateVerifiedAccount
   end
 
   def call(name:, email:, password:)
+    message = { name: name,
+                email: email,
+                password: password }
+
     response = HTTP.post("#{@config.API_URL}/accounts/",
-                         json: { name: name,
-                                 email: email,
-                                 password: password })
+                         json: { data: message,
+                                 signature: SecureMessage.sign(message) })
     response.code == 201 ? true : false
   end
 end
