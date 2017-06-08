@@ -6,19 +6,19 @@ require 'json'
 require 'rack-flash'
 require 'rack/ssl-enforcer'
 require 'rack/session/redis'
+require 'slim/include'
 
 # Base class for Totodile Web Application
 class TotodileApp < Sinatra::Base
   extend Econfig::Shortcut
 
-  ONE_MONTH = 2_592_000 # One month in seconds
-
+  enable :logging
   set :views, File.expand_path('../../views', __FILE__)
   set :public_dir, File.expand_path('../../public', __FILE__)
 
-  configure :production do
-    use Rack::SslEnforcer
-  end
+  # configure :production do
+  #   use Rack::SslEnforcer
+  # end
 
   configure do
     Econfig.env = settings.environment.to_s
@@ -30,12 +30,19 @@ class TotodileApp < Sinatra::Base
 
   # use Rack::Session::Cookie, expire_after: ONE_MONTH, secret: SecureSession.secret
   # use Rack::Session::Pool, expire_after: ONE_MONTH
-  use Rack::Session::Redis, expire_after: ONE_MONTH, redis_server: settings.config.REDIS_URL
+  #use Rack::Session::Redis, expire_after: ONE_MONTH, redis_server: settings.config.REDIS_URL
 
   use Rack::Flash
 
   def current_account?(params)
-    @current_account && @current_account['username'] == params[:username]
+    @current_account && @current_account['name'] == params[:name]
+  end
+
+  def halt_if_incorrect_user(params)
+    return true if current_account?(params)
+    flash[:error] = 'You used the wrong account for this request'
+    redirect '/auth/login'
+    halt
   end
 
   before do
